@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 个人学习资料库</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg-primary:#ffffff;--bg-secondary:#f6f8fa;--bg-card:#ffffff;--bg-card-hover:#f9fafb;
+  --text-primary:#1f2328;--text-secondary:#656d76;--text-muted:#8b949e;
+  --border-color:#d0d7de;--border-light:#e8ecf0;
+  --accent:#0969da;--accent-light:#ddf4ff;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.08);--shadow-lg:0 8px 30px rgba(0,0,0,.12);
+  --hero-text:#ffffff;--hero-overlay:rgba(0,0,0,.55);
+  --nav-bg:rgba(255,255,255,.85);--nav-border:#d0d7de;
+  --sidebar-bg:#f6f8fa;
+  --tag-bg:#ddf4ff;--tag-text:#0969da;
+  --gradient-ai:linear-gradient(135deg,#0969da 0%,#54aeff 50%,#a2d2ff 100%);
+  --gradient-music:linear-gradient(135deg,#8250df 0%,#c297f5 50%,#e8d5ff 100%);
+  --gradient-calligraphy:linear-gradient(135deg,#8a5a32 0%,#c9a96e 50%,#f0e0b4 100%);
+  --gradient-english:linear-gradient(135deg,#1a7f37 0%,#4ac26b 50%,#acf5bd 100%);
+  --gradient-math:linear-gradient(135deg,#cf4412 0%,#f0883e 50%,#ffd8b5 100%);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-display:'Noto Serif SC',serif;--font-body:'Noto Sans SC',sans-serif;
+  --transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="dark"]{
+  --bg-primary:#0d1117;--bg-secondary:#161b22;--bg-card:#161b22;--bg-card-hover:#1c2129;
+  --text-primary:#e6edf3;--text-secondary:#8b949e;--text-muted:#6e7681;
+  --border-color:#30363d;--border-light:#21262d;
+  --accent:#58a6ff;--accent-light:#0c2d6b;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.3);--shadow-md:0 4px 12px rgba(0,0,0,.4);--shadow-lg:0 8px 30px rgba(0,0,0,.5);
+  --hero-overlay:rgba(0,0,0,.7);
+  --nav-bg:rgba(13,17,23,.9);--nav-border:#30363d;
+  --sidebar-bg:#161b22;
+  --tag-bg:#0c2d6b;--tag-text:#58a6ff;
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--font-body);background:var(--bg-primary);color:var(--text-primary);line-height:1.7;transition:var(--transition)}
+a{color:var(--accent);text-decoration:none;transition:var(--transition)}
+a:hover{text-decoration:underline}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0d1117}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d1117 0%,#0969da 35%,#8250df 55%,#cf4412 80%,#1a7f37 100%);opacity:.85}
+.hero-bg::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-content{position:relative;z-index:2;text-align:center;padding:60px 20px;color:#fff}
+.hero h1{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.4rem);font-weight:900;margin-bottom:12px;letter-spacing:-.02em;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hero .subtitle{font-size:clamp(1rem,2.5vw,1.25rem);opacity:.88;max-width:600px;margin:0 auto 36px;font-weight:300}
+.stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.stat{text-align:center;min-width:100px}
+.stat-num{font-family:var(--font-display);font-size:2rem;font-weight:900;display:block;background:linear-gradient(135deg,#fff,#a2d2ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:.82rem;opacity:.7;letter-spacing:.05em;text-transform:uppercase}
+
+/* ===== NAV ===== */
+.main-nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--nav-border);transition:var(--transition)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:12px 20px;flex-wrap:wrap}
+.nav-cats{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+.nav-cat{padding:7px 16px;border-radius:20px;font-size:.88rem;font-weight:500;cursor:pointer;border:1px solid var(--border-color);background:var(--bg-card);color:var(--text-secondary);transition:var(--transition);white-space:nowrap}
+.nav-cat:hover,.nav-cat.active{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.search-box{position:relative;min-width:200px}
+.search-box input{width:100%;padding:8px 14px 8px 36px;border-radius:20px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-primary);font-size:.88rem;outline:none;transition:var(--transition)}
+.search-box input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(9,105,218,.15)}
+.search-box i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:.85rem}
+.theme-toggle{width:40px;height:40px;border-radius:50%;border:1px solid var(--border-color);background:var(--bg-card);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:var(--transition);flex-shrink:0}
+.theme-toggle:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* ===== LAYOUT ===== */
+.page-body{max-width:1200px;margin:0 auto;display:flex;gap:24px;padding:32px 20px 60px}
+.sidebar{width:220px;flex-shrink:0;position:sticky;top:80px;align-self:flex-start;max-height:calc(100vh - 100px);overflow-y:auto}
+.sidebar-inner{background:var(--sidebar-bg);border-radius:var(--radius);padding:16px;border:1px solid var(--border-light)}
+.sidebar h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:10px;font-weight:600}
+.sidebar-link{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:var(--radius-sm);font-size:.88rem;color:var(--text-secondary);transition:var(--transition);cursor:pointer;margin-bottom:2px}
+.sidebar-link:hover{background:var(--bg-card-hover);color:var(--text-primary);text-decoration:none}
+.sidebar-link.active{background:var(--accent-light);color:var(--accent);font-weight:600}
+.sidebar-link i{width:18px;text-align:center;font-size:.82rem}
+.main-content{flex:1;min-width:0}
+
+/* ===== SECTIONS ===== */
+.category-section{margin-bottom:56px;scroll-margin-top:80px}
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;padding-bottom:16px;border-bottom:2px solid var(--border-light)}
+.section-icon{width:52px;height:52px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff;flex-shrink:0}
+.section-header h2{font-family:var(--font-display);font-size:1.65rem;font-weight:700}
+.section-header p{color:var(--text-secondary);font-size:.92rem;margin-top:2px}
+
+/* Learning Path */
+.path-title{font-family:var(--font-display);font-size:1.15rem;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.path-title i{color:var(--accent)}
+.path-timeline{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;position:relative}
+.path-timeline::before{content:'';position:absolute;left:19px;top:28px;bottom:28px;width:2px;background:var(--border-light);border-radius:2px}
+.stage-card{display:flex;gap:16px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius);transition:var(--transition);position:relative}
+.stage-card:hover{transform:translateX(4px);box-shadow:var(--shadow-md);border-color:var(--accent)}
+.stage-num{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;color:#fff;flex-shrink:0;z-index:1}
+.stage-body h4{font-size:.95rem;font-weight:600;margin-bottom:3px}
+.stage-body p{font-size:.85rem;color:var(--text-secondary);line-height:1.5}
+.stage-body .duration{display:inline-flex;align-items:center;gap:4px;font-size:.78rem;color:var(--text-muted);margin-top:6px;background:var(--bg-secondary);padding:3px 10px;border-radius:12px}
+
+/* Resources */
+.res-title{font-family:var(--font-display);font-size:1.15rem;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.res-title i{color:var(--accent)}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:32px}
+.res-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius);padding:20px;transition:var(--transition);position:relative;overflow:hidden}
+.res-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:var(--transition)}
+.res-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:transparent}
+.res-card:hover::before{opacity:1}
+.res-card .res-name{font-weight:600;font-size:.95rem;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.res-card .res-name i{color:#e3b341;font-size:.82rem}
+.res-card .res-desc{font-size:.84rem;color:var(--text-secondary);line-height:1.5;margin-bottom:10px}
+.res-card .res-meta{display:flex;gap:10px;flex-wrap:wrap}
+.res-tag{font-size:.75rem;padding:3px 10px;border-radius:12px;background:var(--tag-bg);color:var(--tag-text);font-weight:500}
+
+/* Tips */
+.tips-box{background:var(--bg-secondary);border:1px solid var(--border-light);border-radius:var(--radius);padding:20px 24px}
+.tips-box h4{font-size:.95rem;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.tips-box h4 i{color:var(--accent)}
+.tips-box ul{list-style:none;padding:0}
+.tips-box li{padding:5px 0;font-size:.88rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}
+.tips-box li::before{content:'✦';color:var(--accent);font-size:.7rem;margin-top:4px;flex-shrink:0}
+
+/* Category accent colors */
+.cat-ai .section-icon{background:var(--gradient-ai)}
+.cat-ai .stage-num{background:var(--gradient-ai)}
+.cat-ai .res-card::before{background:var(--gradient-ai)}
+.cat-ai .stage-card:hover{border-color:#0969da}
+.cat-music .section-icon{background:var(--gradient-music)}
+.cat-music .stage-num{background:var(--gradient-music)}
+.cat-music .res-card::before{background:var(--gradient-music)}
+.cat-music .stage-card:hover{border-color:#8250df}
+.cat-calligraphy .section-icon{background:var(--gradient-calligraphy)}
+.cat-calligraphy .stage-num{background:var(--gradient-calligraphy)}
+.cat-calligraphy .res-card::before{background:var(--gradient-calligraphy)}
+.cat-calligraphy .stage-card:hover{border-color:#8a5a32}
+.cat-english .section-icon{background:var(--gradient-english)}
+.cat-english .stage-num{background:var(--gradient-english)}
+.cat-english .res-card::before{background:var(--gradient-english)}
+.cat-english .stage-card:hover{border-color:#1a7f37}
+.cat-math .section-icon{background:var(--gradient-math)}
+.cat-math .stage-num{background:var(--gradient-math)}
+.cat-math .res-card::before{background:var(--gradient-math)}
+.cat-math .stage-card:hover{border-color:#cf4412}
+
+/* ===== FOOTER ===== */
+.site-footer{background:var(--bg-secondary);border-top:1px solid var(--border-light);padding:40px 20px;text-align:center}
+.footer-inner{max-width:800px;margin:0 auto}
+.footer-inner p{color:var(--text-secondary);font-size:.88rem;margin-bottom:8px}
+.footer-inner .heart{color:#cf4412}
+.footer-links{display:flex;justify-content:center;gap:20px;margin-top:16px;flex-wrap:wrap}
+.footer-links a{color:var(--text-muted);font-size:.84rem}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .sidebar{display:none}
+  .page-body{flex-direction:column}
+  .stats{gap:20px}
+}
+@media(max-width:600px){
+  .hero{min-height:320px}
+  .hero h1{font-size:1.6rem}
+  .stat-num{font-size:1.5rem}
+  .nav-inner{flex-direction:column;align-items:stretch}
+  .nav-cats{justify-content:center}
+  .search-box{min-width:unset}
+  .res-grid{grid-template-columns:1fr}
+  .section-header h2{font-size:1.3rem}
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.animate-in{animation:fadeUp .6s cubic-bezier(.4,0,.2,1) both}
+.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}.delay-5{animation-delay:.5s}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border-color);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
+
+/* Hidden by search */
+.search-hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1 class="animate-in">📚 个人学习资料库</h1>
+    <p class="subtitle animate-in delay-1">系统化学习路径 · 精选开源资源 · 从零到一的成长指南</p>
+    <div class="stats animate-in delay-2">
+      <div class="stat"><span class="stat-num">5</span><span class="stat-label">学习分类</span></div>
+      <div class="stat"><span class="stat-num">10+</span><span class="stat-label">GitHub 仓库</span></div>
+      <div class="stat"><span class="stat-num">25</span><span class="stat-label">学习阶段</span></div>
+      <div class="stat"><span class="stat-num">200K+</span><span class="stat-label">Stars</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="main-nav">
+  <div class="nav-inner">
+    <div class="nav-cats">
+      <a class="nav-cat active" href="#ai" data-cat="ai"><i class="fa-solid fa-robot"></i> AI</a>
+      <a class="nav-cat" href="#music" data-cat="music"><i class="fa-solid fa-music"></i> 音乐</a>
+      <a class="nav-cat" href="#calligraphy" data-cat="calligraphy"><i class="fa-solid fa-pen-nib"></i> 书法</a>
+      <a class="nav-cat" href="#english" data-cat="english"><i class="fa-solid fa-language"></i> 英语</a>
+      <a class="nav-cat" href="#math" data-cat="math"><i class="fa-solid fa-square-root-variable"></i> 数学</a>
+    </div>
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="搜索资源或内容…">
+    </div>
+    <button class="theme-toggle" id="themeToggle" title="切换主题"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</nav>
+
+<!-- BODY -->
+<div class="page-body">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <h4>目录导航</h4>
+      <a class="sidebar-link active" href="#ai" data-section="ai"><i class="fa-solid fa-robot"></i>AI</a>
+      <a class="sidebar-link" href="#music" data-section="music"><i class="fa-solid fa-music"></i>音乐</a>
+      <a class="sidebar-link" href="#calligraphy" data-section="calligraphy"><i class="fa-solid fa-pen-nib"></i>书法</a>
+      <a class="sidebar-link" href="#english" data-section="english"><i class="fa-solid fa-language"></i>英语</a>
+      <a class="sidebar-link" href="#math" data-section="math"><i class="fa-solid fa-square-root-variable"></i>数学</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- ===== AI ===== -->
+    <section id="ai" class="category-section cat-ai" data-searchable>
+      <div class="section-header">
+        <div class="section-icon"><i class="fa-solid fa-robot"></i></div>
+        <div><h2>🤖 AI — 人工智能</h2><p>从 Python 基础到大模型前沿，系统化掌握 AI 核心技术</p></div>
+      </div>
+
+      <div class="path-title"><i class="fa-solid fa-route"></i> 学习路径</div>
+      <div class="path-timeline">
+        <div class="stage-card"><div class="stage-num">1</div><div class="stage-body"><h4>Python 基础 + 数学基础</h4><p>掌握 Python 编程语法与核心库（NumPy、Pandas），同步学习线性代数、概率论、微积分三大数学基础</p><span class="duration"><i class="fa-regular fa-clock"></i> 4-6 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">2</div><div class="stage-body"><h4>机器学习基础</h4><p>理解监督学习与无监督学习核心算法，掌握模型评估方法、交叉验证、特征工程与数据预处理技术</p><span class="duration"><i class="fa-regular fa-clock"></i> 6-8 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">3</div><div class="stage-body"><h4>深度学习</h4><p>深入学习 CNN 卷积神经网络、RNN 循环神经网络、Transformer 架构，掌握 PyTorch / TensorFlow 框架</p><span class="duration"><i class="fa-regular fa-clock"></i> 8-10 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">4</div><div class="stage-body"><h4>NLP / CV / 强化学习专项</h4><p>选择方向深入：自然语言处理（BERT、GPT）、计算机视觉（目标检测、图像分割）或强化学习（DQN、PPO）</p><span class="duration"><i class="fa-regular fa-clock"></i> 8-12 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">5</div><div class="stage-body"><h4>大模型 / Agent / 前沿方向</h4><p>探索 LLM 大语言模型原理、RAG 检索增强生成、多模态模型、AI Agent 开发等前沿技术领域</p><span class="duration"><i class="fa-regular fa-clock"></i> 持续学习</span></div></div>
+      </div>
+
+      <div class="res-title"><i class="fa-brands fa-github"></i> 精选 GitHub 资源</div>
+      <div class="res-grid">
+        <a class="res-card" href="https://github.com/microsoft/AI-For-Beginners" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> microsoft/AI-For-Beginners</div>
+          <div class="res-desc">微软出品的 12 周 AI 入门课程，涵盖机器学习、计算机视觉、自然语言处理等，配套项目实战与练习</div>
+          <div class="res-meta"><span class="res-tag">⭐ 59K+</span><span class="res-tag">微软官方</span><span class="res-tag">12 周课程</span></div>
+        </a>
+        <a class="res-card" href="https://github.com/d2l-ai/d2l-zh" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> d2l-ai/d2l-zh</div>
+          <div class="res-desc">《动手学深度学习》中文版，交互式学习体验，配套 Jupyter Notebook，理论与实践完美结合</div>
+          <div class="res-meta"><span class="res-tag">⭐ 50K+</span><span class="res-tag">中文</span><span class="res-tag">交互式</span></div>
+        </a>
+        <a class="res-card" href="https://github.com/josephmisiti/awesome-machine-learning" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> awesome-machine-learning</div>
+          <div class="res-desc">机器学习领域最全面的资源索引，按语言、框架、领域分类，快速找到所需学习材料和工具</div>
+          <div class="res-meta"><span class="res-tag">⭐ 56K+</span><span class="res-tag">资源索引</span><span class="res-tag">多语言</span></div>
+        </a>
+      </div>
+
+      <div class="tips-box">
+        <h4><i class="fa-solid fa-lightbulb"></i> 学习建议</h4>
+        <ul>
+          <li>先打好 Python 和数学基础，不要急于求成直接上深度学习</li>
+          <li>每学一个算法，务必动手实现一遍，理论+实践缺一不可</li>
+          <li>善用 Kaggle 平台做实战项目，积累真实数据处理经验</li>
+          <li>关注 AI 领域最新论文和开源项目，保持技术敏感度</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== MUSIC ===== -->
+    <section id="music" class="category-section cat-music" data-searchable>
+      <div class="section-header">
+        <div class="section-icon"><i class="fa-solid fa-music"></i></div>
+        <div><h2>🎵 音乐</h2><p>从乐理入门到编曲创作，开启你的音乐之旅</p></div>
+      </div>
+
+      <div class="path-title"><i class="fa-solid fa-route"></i> 学习路径</div>
+      <div class="path-timeline">
+        <div class="stage-card"><div class="stage-num">1</div><div class="stage-body"><h4>基础乐理</h4><p>学习音阶构成、节奏节拍、和弦原理、记谱法（五线谱与简谱），建立音乐理论基础认知</p><span class="duration"><i class="fa-regular fa-clock"></i> 3-4 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">2</div><div class="stage-body"><h4>乐器入门</h4><p>选择一门主修乐器（钢琴/吉他/声乐），掌握基本演奏技巧、指法练习和简单曲目弹奏</p><span class="duration"><i class="fa-regular fa-clock"></i> 8-12 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">3</div><div class="stage-body"><h4>音乐制作基础</h4><p>学习 DAW 数字音频工作站操作、MIDI 编曲、录音技术、音频编辑与基本混音概念</p><span class="duration"><i class="fa-regular fa-clock"></i> 6-8 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">4</div><div class="stage-body"><h4>编曲与混音</h4><p>深入和声编配、管弦配器法、EQ 均衡器调节、动态压缩、空间效果（混响/延迟）等进阶技术</p><span class="duration"><i class="fa-regular fa-clock"></i> 8-12 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">5</div><div class="stage-body"><h4>音乐理论与创作</h4><p>探索作曲技法、曲式分析、个人风格培养，尝试原创音乐制作与多风格融合实验</p><span class="duration"><i class="fa-regular fa-clock"></i> 持续精进</span></div></div>
+      </div>
+
+      <div class="res-title"><i class="fa-brands fa-github"></i> 精选 GitHub 资源</div>
+      <div class="res-grid">
+        <a class="res-card" href="https://github.com/noteflakes/awesome-music" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> noteflakes/awesome-music</div>
+          <div class="res-desc">音乐与技术的综合资源索引，涵盖音乐软件、硬件、理论、教育等多个维度的精选资源</div>
+          <div class="res-meta"><span class="res-tag">资源索引</span><span class="res-tag">音乐+技术</span></div>
+        </a>
+        <a class="res-card" href="https://github.com/cuthbertLab/music21" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> cuthbertLab/music21</div>
+          <div class="res-desc">MIT 开发的计算音乐学工具包，支持音乐分析、和声识别、风格分类等，适合音乐技术研究</div>
+          <div class="res-meta"><span class="res-tag">MIT</span><span class="res-tag">Python</span><span class="res-tag">计算音乐学</span></div>
+        </a>
+      </div>
+
+      <div class="tips-box">
+        <h4><i class="fa-solid fa-lightbulb"></i> 学习建议</h4>
+        <ul>
+          <li>每天保持 30 分钟以上的乐器练习，肌肉记忆需要持续积累</li>
+          <li>多听不同风格的音乐，培养音乐审美和听觉敏感度</li>
+          <li>尽早开始尝试即兴演奏和简单创作，实践是最好的老师</li>
+          <li>利用 music21 等工具将编程与音乐结合，创造独特的学习方式</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== CALLIGRAPHY ===== -->
+    <section id="calligraphy" class="category-section cat-calligraphy" data-searchable>
+      <div class="section-header">
+        <div class="section-icon"><i class="fa-solid fa-pen-nib"></i></div>
+        <div><h2>✒️ 书法</h2><p>笔墨纸砚之间，修身养性之道</p></div>
+      </div>
+
+      <div class="path-title"><i class="fa-solid fa-route"></i> 学习路径</div>
+      <div class="path-timeline">
+        <div class="stage-card"><div class="stage-num">1</div><div class="stage-body"><h4>基本笔画与握笔姿势</h4><p>学习五指执笔法，掌握正确坐姿与运笔姿势，练习横竖撇捺点等基本笔画，理解永字八法基础</p><span class="duration"><i class="fa-regular fa-clock"></i> 2-4 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">2</div><div class="stage-body"><h4>楷书基础</h4><p>深入永字八法详解，系统练习楷书基本结构与笔法，推荐临摹颜真卿《多宝塔碑》或欧阳询《九成宫》</p><span class="duration"><i class="fa-regular fa-clock"></i> 4-8 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">3</div><div class="stage-body"><h4>常用字练习</h4><p>分析汉字间架结构（左右、上下、包围等），完成 500 常用字书写练习，注重笔画搭配与重心平衡</p><span class="duration"><i class="fa-regular fa-clock"></i> 8-12 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">4</div><div class="stage-body"><h4>行书/隶书进阶</h4><p>临摹王羲之《兰亭序》学习行书流畅笔法，或习《曹全碑》《张迁碑》等隶书经典，拓展书体视野</p><span class="duration"><i class="fa-regular fa-clock"></i> 12-24 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">5</div><div class="stage-body"><h4>创作与风格形成</h4><p>学习章法布局（条幅、中堂、对联），尝试独立创作，探索个人书法风格，可参加展览或投稿</p><span class="duration"><i class="fa-regular fa-clock"></i> 终身修行</span></div></div>
+      </div>
+
+      <div class="res-title"><i class="fa-brands fa-github"></i> 精选 GitHub 资源</div>
+      <div class="res-grid">
+        <a class="res-card" href="https://github.com/skishore/makemeahanzi" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> skishore/makemeahanzi</div>
+          <div class="res-desc">包含 9574 个汉字的笔顺 SVG 数据，可用于开发汉字书写练习应用，数据详实准确</div>
+          <div class="res-meta"><span class="res-tag">9574 字</span><span class="res-tag">SVG 笔顺</span></div>
+        </a>
+        <a class="res-card" href="https://github.com/chanind/hanzi-writer" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> chanind/hanzi-writer</div>
+          <div class="res-desc">汉字笔顺动画 JavaScript 库，支持交互式书写练习，可用于网页和移动端应用开发</div>
+          <div class="res-meta"><span class="res-tag">JavaScript</span><span class="res-tag">交互动画</span><span class="res-tag">笔顺</span></div>
+        </a>
+      </div>
+
+      <div class="tips-box">
+        <h4><i class="fa-solid fa-lightbulb"></i> 学习建议</h4>
+        <ul>
+          <li>初学务必从楷书入手，打好基础再学行草，切忌好高骛远</li>
+          <li>选一本经典碑帖坚持临摹至少 3 个月，不要频繁换帖</li>
+          <li>注意读帖比临帖更重要，仔细观察每个字的结构和笔法特征</li>
+          <li>利用 hanzi-writer 等数字工具辅助理解笔顺，但核心还是要手写练习</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== ENGLISH ===== -->
+    <section id="english" class="category-section cat-english" data-searchable>
+      <div class="section-header">
+        <div class="section-icon"><i class="fa-solid fa-language"></i></div>
+        <div><h2>🌍 英语</h2><p>从音标发音到高级表达，全面提升英语能力</p></div>
+      </div>
+
+      <div class="path-title"><i class="fa-solid fa-route"></i> 学习路径</div>
+      <div class="path-timeline">
+        <div class="stage-card"><div class="stage-num">1</div><div class="stage-body"><h4>发音与音标</h4><p>系统学习 IPA 国际音标，掌握元音辅音发音要领，练习连读、弱读、语调等语音现象</p><span class="duration"><i class="fa-regular fa-clock"></i> 2-4 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">2</div><div class="stage-body"><h4>核心词汇</h4><p>攻克 2000 高频核心词汇，学习词根词缀记忆法，建立词汇网络，提升词汇量至 5000+</p><span class="duration"><i class="fa-regular fa-clock"></i> 6-8 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">3</div><div class="stage-body"><h4>语法体系搭建</h4><p>掌握五大基本句型、八大时态、各类从句（定语从句、状语从句、名词性从句）等核心语法框架</p><span class="duration"><i class="fa-regular fa-clock"></i> 6-8 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">4</div><div class="stage-body"><h4>听说读写全面提升</h4><p>精听与泛听结合、影子跟读法提升口语、分级阅读拓展视野、写作练习巩固语法与词汇运用</p><span class="duration"><i class="fa-regular fa-clock"></i> 12-24 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">5</div><div class="stage-body"><h4>高级表达与专业英语</h4><p>学术写作规范、商务英语沟通、雅思/托福等考试备考，根据目标方向深入精进</p><span class="duration"><i class="fa-regular fa-clock"></i> 持续精进</span></div></div>
+      </div>
+
+      <div class="res-title"><i class="fa-brands fa-github"></i> 精选 GitHub 资源</div>
+      <div class="res-grid">
+        <a class="res-card" href="https://github.com/byoungd/English-level-up-tips" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> byoungd/English-level-up-tips</div>
+          <div class="res-desc">超实用英语学习指南，涵盖听说读写各维度提升方法，从初学者到高级学习者的完整攻略</div>
+          <div class="res-meta"><span class="res-tag">⭐ 54K+</span><span class="res-tag">中文</span><span class="res-tag">学习指南</span></div>
+        </a>
+        <a class="res-card" href="https://github.com/ZuodaoTech/everyone-can-use-english" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> everyone-can-use-english</div>
+          <div class="res-desc">《人人都能用英语》配套 Enjoy App，提供语音评测、跟读练习等互动功能，让英语学习更有趣</div>
+          <div class="res-meta"><span class="res-tag">配套 App</span><span class="res-tag">语音评测</span><span class="res-tag">交互练习</span></div>
+        </a>
+      </div>
+
+      <div class="tips-box">
+        <h4><i class="fa-solid fa-lightbulb"></i> 学习建议</h4>
+        <ul>
+          <li>发音是基础中的基础，花足够时间在音标上，后续学习会事半功倍</li>
+          <li>背单词不要死记硬背，结合语境和词根词缀理解记忆效果更持久</li>
+          <li>每天至少 30 分钟英语输入（听力/阅读），保持语感比突击学习更有效</li>
+          <li>善用 Enjoy App 做跟读练习，AI 语音评测能帮你纠正发音细节</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== MATH ===== -->
+    <section id="math" class="category-section cat-math" data-searchable>
+      <div class="section-header">
+        <div class="section-icon"><i class="fa-solid fa-square-root-variable"></i></div>
+        <div><h2>🔢 数学</h2><p>从数学思维到高等数学，构建严密的逻辑推理能力</p></div>
+      </div>
+
+      <div class="path-title"><i class="fa-solid fa-route"></i> 学习路径</div>
+      <div class="path-timeline">
+        <div class="stage-card"><div class="stage-num">1</div><div class="stage-body"><h4>数学思维与基础</h4><p>学习集合论基础、逻辑与证明方法（直接证明、反证法、数学归纳法）、函数与关系等核心概念</p><span class="duration"><i class="fa-regular fa-clock"></i> 4-6 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">2</div><div class="stage-body"><h4>微积分</h4><p>系统学习单变量与多变量微积分，包括极限理论、导数与应用、不定积分与定积分、级数展开</p><span class="duration"><i class="fa-regular fa-clock"></i> 12-16 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">3</div><div class="stage-body"><h4>线性代数</h4><p>掌握向量空间、线性变换、矩阵运算、特征值与特征向量、奇异值分解（SVD）等核心内容</p><span class="duration"><i class="fa-regular fa-clock"></i> 8-12 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">4</div><div class="stage-body"><h4>概率统计</h4><p>学习概率论基础、随机变量分布、参数估计、假设检验、回归分析、贝叶斯统计等实用方法</p><span class="duration"><i class="fa-regular fa-clock"></i> 8-10 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">5</div><div class="stage-body"><h4>抽象代数 / 实分析 / 拓扑</h4><p>按兴趣选择方向：群环域等代数结构、测度论与 Lebesgue 积分、拓扑空间与连续映射等高等课题</p><span class="duration"><i class="fa-regular fa-clock"></i> 每方向 3-6 月</span></div></div>
+      </div>
+
+      <div class="res-title"><i class="fa-brands fa-github"></i> 精选 GitHub 资源</div>
+      <div class="res-grid">
+        <a class="res-card" href="https://github.com/ossu/math" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> ossu/math</div>
+          <div class="res-desc">OSSU 开源大学数学自学课程，提供从基础到高等数学的完整学习路径，配套免费优质课程资源</div>
+          <div class="res-meta"><span class="res-tag">⭐ 14K+</span><span class="res-tag">自学课程</span><span class="res-tag">完整路径</span></div>
+        </a>
+        <a class="res-card" href="https://github.com/rossant/awesome-math" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> rossant/awesome-math</div>
+          <div class="res-desc">数学资源百科全书，按分支分类整理海量数学学习资源，是数学学习者的必备索引</div>
+          <div class="res-meta"><span class="res-tag">资源百科</span><span class="res-tag">全分支</span></div>
+        </a>
+        <a class="res-card" href="https://github.com/dair-ai/Mathematics-for-ML" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> dair-ai/Mathematics-for-ML</div>
+          <div class="res-desc">机器学习数学基础资源，聚焦 AI 所需的数学知识，涵盖线性代数、微积分、概率论等核心内容</div>
+          <div class="res-meta"><span class="res-tag">ML 数学</span><span class="res-tag">实用导向</span></div>
+        </a>
+      </div>
+
+      <div class="tips-box">
+        <h4><i class="fa-solid fa-lightbulb"></i> 学习建议</h4>
+        <ul>
+          <li>数学学习重在理解而非记忆，每个定理都要理解其证明思路和直觉</li>
+          <li>大量做题是必须的，数学能力是通过解题训练出来的</li>
+          <li>善用 3Blue1Brown 等可视化资源，几何直觉能帮助你更好理解抽象概念</li>
+          <li>如果目标是 AI 方向，优先学好线性代数和概率统计，它们是机器学习的数学基石</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p><i class="fa-solid fa-graduation-cap"></i> 个人学习资料库 — 系统化学习，持续成长</p>
+    <p>用 <span class="heart"><i class="fa-solid fa-heart"></i></span> 构建 · 知识改变命运 · 学习成就未来</p>
+    <div class="footer-links">
+      <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="#ai"><i class="fa-solid fa-arrow-up"></i> 回到顶部</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+const html = document.documentElement;
+const savedTheme = localStorage.getItem('theme') || 'light';
+html.setAttribute('data-theme', savedTheme);
+updateThemeIcon();
+
+themeToggle.addEventListener('click', () => {
+  const current = html.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateThemeIcon();
+});
+
+function updateThemeIcon() {
+  const icon = themeToggle.querySelector('i');
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+}
+
+// Nav active state
+const navCats = document.querySelectorAll('.nav-cat');
+navCats.forEach(cat => {
+  cat.addEventListener('click', () => {
+    navCats.forEach(c => c.classList.remove('active'));
+    cat.classList.add('active');
+  });
+});
+
+// Sidebar IntersectionObserver
+const sections = document.querySelectorAll('.category-section');
+const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      sidebarLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('data-section') === id);
+      });
+      navCats.forEach(cat => {
+        cat.classList.toggle('active', cat.getAttribute('data-cat') === id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+
+sections.forEach(s => observer.observe(s));
+
+// Search
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', (e) => {
+  const query = e.target.value.toLowerCase().trim();
+  const cards = document.querySelectorAll('.res-card, .stage-card');
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    card.classList.toggle('search-hidden', query && !text.includes(query));
+  });
+  // Show/hide sections based on visible content
+  sections.forEach(section => {
+    const visibleCards = section.querySelectorAll('.res-card:not(.search-hidden), .stage-card:not(.search-hidden)');
+    section.classList.toggle('search-hidden', query && visibleCards.length === 0);
+  });
+});
+
+// Animate on scroll
+const animateObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.stage-card, .res-card, .tips-box').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = `opacity .5s ease ${i % 5 * .08}s, transform .5s ease ${i % 5 * .08}s`;
+  animateObserver.observe(el);
+});
+</script>
+</body>
+</html>
