@@ -24,6 +24,7 @@
   --gradient-calligraphy:linear-gradient(135deg,#8a5a32 0%,#c9a96e 50%,#f0e0b4 100%);
   --gradient-english:linear-gradient(135deg,#1a7f37 0%,#4ac26b 50%,#acf5bd 100%);
   --gradient-math:linear-gradient(135deg,#cf4412 0%,#f0883e 50%,#ffd8b5 100%);
+  --gradient-psychology:linear-gradient(135deg,#d63384 0%,#e879a8 50%,#ffc2d9 100%);
   --radius:12px;--radius-sm:8px;--radius-lg:16px;
   --font-display:'Noto Serif SC',serif;--font-body:'Noto Sans SC',sans-serif;
   --transition:all .3s cubic-bezier(.4,0,.2,1);
@@ -142,6 +143,10 @@ a:hover{text-decoration:underline}
 .cat-math .stage-num{background:var(--gradient-math)}
 .cat-math .res-card::before{background:var(--gradient-math)}
 .cat-math .stage-card:hover{border-color:#cf4412}
+.cat-psychology .section-icon{background:var(--gradient-psychology)}
+.cat-psychology .stage-num{background:var(--gradient-psychology)}
+.cat-psychology .res-card::before{background:var(--gradient-psychology)}
+.cat-psychology .stage-card:hover{border-color:#d63384}
 
 /* ===== FOOTER ===== */
 .site-footer{background:var(--bg-secondary);border-top:1px solid var(--border-light);padding:40px 20px;text-align:center}
@@ -192,9 +197,9 @@ a:hover{text-decoration:underline}
     <h1 class="animate-in">📚 个人学习资料库</h1>
     <p class="subtitle animate-in delay-1">系统化学习路径 · 精选开源资源 · 从零到一的成长指南</p>
     <div class="stats animate-in delay-2">
-      <div class="stat"><span class="stat-num">5</span><span class="stat-label">学习分类</span></div>
-      <div class="stat"><span class="stat-num">10+</span><span class="stat-label">GitHub 仓库</span></div>
-      <div class="stat"><span class="stat-num">25</span><span class="stat-label">学习阶段</span></div>
+      <div class="stat"><span class="stat-num">6</span><span class="stat-label">学习分类</span></div>
+      <div class="stat"><span class="stat-num">13+</span><span class="stat-label">GitHub 仓库</span></div>
+      <div class="stat"><span class="stat-num">30+</span><span class="stat-label">学习阶段</span></div>
       <div class="stat"><span class="stat-num">200K+</span><span class="stat-label">Stars</span></div>
     </div>
   </div>
@@ -209,6 +214,7 @@ a:hover{text-decoration:underline}
       <a class="nav-cat" href="#calligraphy" data-cat="calligraphy"><i class="fa-solid fa-pen-nib"></i> 书法</a>
       <a class="nav-cat" href="#english" data-cat="english"><i class="fa-solid fa-language"></i> 英语</a>
       <a class="nav-cat" href="#math" data-cat="math"><i class="fa-solid fa-square-root-variable"></i> 数学</a>
+      <a class="nav-cat" href="#psychology" data-cat="psychology"><i class="fa-solid fa-brain"></i> 心理学</a>
     </div>
     <div class="search-box">
       <i class="fa-solid fa-magnifying-glass"></i>
@@ -229,6 +235,7 @@ a:hover{text-decoration:underline}
       <a class="sidebar-link" href="#calligraphy" data-section="calligraphy"><i class="fa-solid fa-pen-nib"></i>书法</a>
       <a class="sidebar-link" href="#english" data-section="english"><i class="fa-solid fa-language"></i>英语</a>
       <a class="sidebar-link" href="#math" data-section="math"><i class="fa-solid fa-square-root-variable"></i>数学</a>
+      <a class="sidebar-link" href="#psychology" data-section="psychology"><i class="fa-solid fa-brain"></i>心理学</a>
     </div>
   </aside>
 
@@ -249,6 +256,7 @@ a:hover{text-decoration:underline}
         <div class="stage-card"><div class="stage-num">3</div><div class="stage-body"><h4>深度学习</h4><p>深入学习 CNN 卷积神经网络、RNN 循环神经网络、Transformer 架构，掌握 PyTorch / TensorFlow 框架</p><span class="duration"><i class="fa-regular fa-clock"></i> 8-10 周</span></div></div>
         <div class="stage-card"><div class="stage-num">4</div><div class="stage-body"><h4>NLP / CV / 强化学习专项</h4><p>选择方向深入：自然语言处理（BERT、GPT）、计算机视觉（目标检测、图像分割）或强化学习（DQN、PPO）</p><span class="duration"><i class="fa-regular fa-clock"></i> 8-12 周</span></div></div>
         <div class="stage-card"><div class="stage-num">5</div><div class="stage-body"><h4>大模型 / Agent / 前沿方向</h4><p>探索 LLM 大语言模型原理、RAG 检索增强生成、多模态模型、AI Agent 开发等前沿技术领域</p><span class="duration"><i class="fa-regular fa-clock"></i> 持续学习</span></div></div>
+        <div class="stage-card"><div class="stage-num" style="background:linear-gradient(135deg,#1a7f37 0%,#4ac26b 50%,#acf5bd 100%)">💼</div><div class="stage-body"><h4>AI 算法工程师职业方向</h4><p>从 LeetCode 刷题到 Kaggle 竞赛，从论文复现到模型部署，系统掌握算法工程师核心能力与面试技巧</p><span class="duration"><i class="fa-regular fa-clock"></i> 职业成长</span></div></div>
       </div>
 
       <div class="res-title"><i class="fa-brands fa-github"></i> 精选 GitHub 资源</div>
@@ -335,6 +343,7 @@ a:hover{text-decoration:underline}
         <div class="stage-card"><div class="stage-num">2</div><div class="stage-body"><h4>楷书基础</h4><p>深入永字八法详解，系统练习楷书基本结构与笔法，推荐临摹颜真卿《多宝塔碑》或欧阳询《九成宫》</p><span class="duration"><i class="fa-regular fa-clock"></i> 4-8 周</span></div></div>
         <div class="stage-card"><div class="stage-num">3</div><div class="stage-body"><h4>常用字练习</h4><p>分析汉字间架结构（左右、上下、包围等），完成 500 常用字书写练习，注重笔画搭配与重心平衡</p><span class="duration"><i class="fa-regular fa-clock"></i> 8-12 周</span></div></div>
         <div class="stage-card"><div class="stage-num">4</div><div class="stage-body"><h4>行书/隶书进阶</h4><p>临摹王羲之《兰亭序》学习行书流畅笔法，或习《曹全碑》《张迁碑》等隶书经典，拓展书体视野</p><span class="duration"><i class="fa-regular fa-clock"></i> 12-24 周</span></div></div>
+        <div class="stage-card"><div class="stage-num" style="background:linear-gradient(135deg,#b8860b 0%,#daa520 50%,#f0d060 100%)">👑</div><div class="stage-body"><h4>瘦金体专题</h4><p>学习宋徽宗独创书体，掌握横画收笔带钩、撇如匕首、捺如切刀的细劲笔法，临摹《千字文》《秾芳诗帖》</p><span class="duration"><i class="fa-regular fa-clock"></i> 持续精进</span></div></div>
         <div class="stage-card"><div class="stage-num">5</div><div class="stage-body"><h4>创作与风格形成</h4><p>学习章法布局（条幅、中堂、对联），尝试独立创作，探索个人书法风格，可参加展览或投稿</p><span class="duration"><i class="fa-regular fa-clock"></i> 终身修行</span></div></div>
       </div>
 
@@ -446,6 +455,52 @@ a:hover{text-decoration:underline}
           <li>大量做题是必须的，数学能力是通过解题训练出来的</li>
           <li>善用 3Blue1Brown 等可视化资源，几何直觉能帮助你更好理解抽象概念</li>
           <li>如果目标是 AI 方向，优先学好线性代数和概率统计，它们是机器学习的数学基石</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== PSYCHOLOGY ===== -->
+    <section id="psychology" class="category-section cat-psychology" data-searchable>
+      <div class="section-header">
+        <div class="section-icon"><i class="fa-solid fa-brain"></i></div>
+        <div><h2>🧠 心理学</h2><p>从理解自我到专业心理学，探索人类心智与行为的奥秘</p></div>
+      </div>
+
+      <div class="path-title"><i class="fa-solid fa-route"></i> 学习路径</div>
+      <div class="path-timeline">
+        <div class="stage-card"><div class="stage-num">1</div><div class="stage-body"><h4>心理学入门</h4><p>了解心理学定义、历史与主要流派（行为主义、精神分析、人本主义、认知心理学），掌握生物心理学基础</p><span class="duration"><i class="fa-regular fa-clock"></i> 4-6 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">2</div><div class="stage-body"><h4>核心分支深入学习</h4><p>系统学习认知心理学、发展心理学、社会心理学、人格心理学、异常心理学等主要分支领域</p><span class="duration"><i class="fa-regular fa-clock"></i> 12-16 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">3</div><div class="stage-body"><h4>研究方法与统计</h4><p>掌握实验设计、心理统计、心理测量、研究伦理，学习使用 SPSS / R / Python 进行数据分析</p><span class="duration"><i class="fa-regular fa-clock"></i> 8-12 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">4</div><div class="stage-body"><h4>应用心理学方向</h4><p>选择方向深入：临床与咨询心理学、工业与组织心理学、教育心理学、用户体验（UX）心理学</p><span class="duration"><i class="fa-regular fa-clock"></i> 12-24 周</span></div></div>
+        <div class="stage-card"><div class="stage-num">5</div><div class="stage-body"><h4>专业深化与前沿</h4><p>追踪积极心理学、神经科学、AI+心理学等前沿领域，获取专业资质，走向学术或实践深耕</p><span class="duration"><i class="fa-regular fa-clock"></i> 终身学习</span></div></div>
+      </div>
+
+      <div class="res-title"><i class="fa-brands fa-github"></i> 精选 GitHub 资源</div>
+      <div class="res-grid">
+        <a class="res-card" href="https://github.com/ossu/psychology" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> ossu/psychology</div>
+          <div class="res-desc">OSSU 开源大学心理学自学课程，提供从入门到专业的完整学习路径，配套优质免费课程资源</div>
+          <div class="res-meta"><span class="res-tag">自学课程</span><span class="res-tag">完整路径</span></div>
+        </a>
+        <a class="res-card" href="https://github.com/lab-mind/psychology-resources" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> lab-mind/psychology-resources</div>
+          <div class="res-desc">心理学学习资源合集，涵盖教材、论文、工具等多维度学习材料，适合各阶段学习者</div>
+          <div class="res-meta"><span class="res-tag">资源合集</span><span class="res-tag">多维度</span></div>
+        </a>
+        <a class="res-card" href="https://github.com/sindresorhus/awesome" target="_blank">
+          <div class="res-name"><i class="fa-solid fa-star"></i> sindresorhus/awesome</div>
+          <div class="res-desc">GitHub 最知名的 awesome 列表，其中包含 Psychology 分类，精选心理学相关开源项目与工具</div>
+          <div class="res-meta"><span class="res-tag">⭐ 350K+</span><span class="res-tag">综合列表</span></div>
+        </a>
+      </div>
+
+      <div class="tips-box">
+        <h4><i class="fa-solid fa-lightbulb"></i> 学习建议</h4>
+        <ul>
+          <li>从《心理学与生活》开始，这是全球最广泛使用的心理学入门教材，通俗易懂</li>
+          <li>用心理学解释生活：学到的每个理论都尝试用来分析自己和身边人的行为</li>
+          <li>区分科学心理学和伪心理学：星座、MBTI（有争议）、读心术等不是科学心理学</li>
+          <li>重视统计和方法论：心理学是科学，不懂统计就无法判断研究结论的可靠性</li>
         </ul>
       </div>
     </section>
